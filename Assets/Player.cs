@@ -25,8 +25,7 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        movement.Normalize();
-        transform.position += movement * movementSpeed * Time.deltaTime;
+        transform.Rotate(new Vector3(0, 1, 0), Input.GetAxis("Horizontal") * Time.deltaTime * turnSpeed);
+        transform.position += Input.GetAxis("Vertical") * transform.forward * Time.deltaTime * movementSpeed;
     }
 }
