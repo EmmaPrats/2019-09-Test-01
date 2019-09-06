@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7642618957997842672
+--- !u!1 &3420525373637548993
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,59 +8,59 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7917995230324869735}
-  - component: {fileID: 464324985320806915}
-  - component: {fileID: 5587415778803025320}
+  - component: {fileID: 3936403949350758601}
+  - component: {fileID: 6576661006441289901}
+  - component: {fileID: 602859636796195079}
   m_Layer: 0
-  m_Name: Chicken
+  m_Name: Salmon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7917995230324869735
+--- !u!4 &3936403949350758601
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7642618957997842672}
+  m_GameObject: {fileID: 3420525373637548993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 667.4026, y: 176.50027, z: -0.3699646}
+  m_LocalPosition: {x: 666, y: 328, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &464324985320806915
+--- !u!114 &6576661006441289901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7642618957997842672}
+  m_GameObject: {fileID: 3420525373637548993}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 251c886267ca044dcb1ac88736349525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   consumable: 0
-  useDuration: 1
+  useDuration: 10
   channelDuration: 0
   rootsUserWhileUsing: 0
   rootsUserWhileChanneling: 0
---- !u!114 &5587415778803025320
+--- !u!114 &602859636796195079
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7642618957997842672}
+  m_GameObject: {fileID: 3420525373637548993}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a688c8e7200684b8081485e3c4582688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stat: attack
-  amount: 5
-  isPercentage: 0
+  amount: 150
+  isPercentage: 1

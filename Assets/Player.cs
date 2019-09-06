@@ -1,4 +1,6 @@
-﻿
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,13 +19,17 @@ public class Player : MonoBehaviour, ITakeDamage, IHaveStats
             return health;
         }
     }
-    private float _attack, _defense;
+    private float _attack = 10, _defense = 10;
+    private float _attackStatModifiersSum = 0;
+    private float _attackStatModifiersMult = 1;
+    private float _defenseStatModifiersSum = 0;
+    private float _defenseStatModifiersMult = 1;
 
     public float Attack
     {
         get
         {
-            return _attack;
+            return _attack * _attackStatModifiersMult + _attackStatModifiersSum;
         }
 
         private set
@@ -36,12 +42,131 @@ public class Player : MonoBehaviour, ITakeDamage, IHaveStats
     {
         get
         {
-            return _defense;
+            return _defense * _defenseStatModifiersMult + _defenseStatModifiersSum;
         }
 
         private set
         {
             _defense = value;
+        }
+    }
+
+    //TODO change strings
+    public void AddStatModifier(string stat, string modifierType, float value, float duration = 0f)
+    {
+        if (stat == "attack")
+        {
+            if (modifierType == "+")
+            {
+                _attackStatModifiersSum += value;
+            }
+            else if (modifierType == "*")
+            {
+                _attackStatModifiersMult += value / 100f - 1f;
+            }
+        }
+        else if (stat == "defense")
+        {
+            if (modifierType == "+")
+            {
+                _defenseStatModifiersSum += value;
+            }
+            else if (modifierType == "*")
+            {
+                _defenseStatModifiersMult += value / 100f - 1f;
+            }
+        }
+
+        if (duration > 0)
+        {
+            StartCoroutine(RemoveStatModifierAfterSomeTime(stat, modifierType, value, duration));
+        }
+    }
+
+    private IEnumerator RemoveStatModifierAfterSomeTime(string stat, string modifierType, float value, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        if (stat == "attack")
+        {
+            if (modifierType == "+")
+            {
+                _attackStatModifiersSum -= value;
+            }
+            else if (modifierType == "*")
+            {
+                _attackStatModifiersMult -= value / 100f - 1f;
+            }
+        }
+        else if (stat == "defense")
+        {
+            if (modifierType == "+")
+            {
+                _defenseStatModifiersSum -= value;
+            }
+            else if (modifierType == "*")
+            {
+                _defenseStatModifiersMult -= value / 100f - 1f;
+            }
+        }
+    }
+
+    public void RemoveStatModifier(string stat, string modifierType, float value, float duration = 0f)
+    {
+        if (stat == "attack")
+        {
+            if (modifierType == "+")
+            {
+                _attackStatModifiersSum -= value;
+            }
+            else if (modifierType == "*")
+            {
+                _attackStatModifiersMult -= value / 100f - 1f;
+            }
+        }
+        else if (stat == "defense")
+        {
+            if (modifierType == "+")
+            {
+                _defenseStatModifiersSum -= value / 100f - 1f;
+            }
+            else if (modifierType == "*")
+            {
+                _defenseStatModifiersMult -= value / 100f - 1f;
+            }
+        }
+
+        if (duration > 0)
+        {
+            StartCoroutine(AddStatModifierAfterSomeTime(stat, modifierType, value, duration));
+        }
+    }
+
+    private IEnumerator AddStatModifierAfterSomeTime(string stat, string modifierType, float value, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        if (stat == "attack")
+        {
+            if (modifierType == "+")
+            {
+                _attackStatModifiersSum += value;
+            }
+            else if (modifierType == "*")
+            {
+                _attackStatModifiersMult += value / 100f - 1f;
+            }
+        }
+        else if (stat == "defense")
+        {
+            if (modifierType == "+")
+            {
+                _defenseStatModifiersSum += value;
+            }
+            else if (modifierType == "*")
+            {
+                _defenseStatModifiersMult += value / 100f - 1f;
+            }
         }
     }
 
@@ -52,6 +177,8 @@ public class Player : MonoBehaviour, ITakeDamage, IHaveStats
     private float turnSpeed = 180f; //degrees/s
 
     public TextMeshProUGUI healthUI;
+    public TextMeshProUGUI attackUI;
+    public TextMeshProUGUI defenseUI;
 
     private void Awake()
     {
@@ -69,7 +196,9 @@ public class Player : MonoBehaviour, ITakeDamage, IHaveStats
     {
         transform.Rotate(new Vector3(0, 1, 0), Input.GetAxis("Horizontal") * Time.deltaTime * turnSpeed);
         transform.position += Input.GetAxis("Vertical") * transform.forward * Time.deltaTime * movementSpeed;
-        healthUI.text = "" + Health;
+        healthUI.text = (int)Health + " HP";
+        attackUI.text = (int)Attack + " atk";
+        defenseUI.text = (int)Defense + " def";
     }
 
     public void TakeDamage(float amount)
