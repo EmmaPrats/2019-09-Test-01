@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour
             Instantiate (enemyPrefab,
                          new Vector3 (Random.Range(-20, 20), 0, Random.Range(-20, 20)),
                          Quaternion.identity);
-            timer = Random.Range(minInterval, maxInterval);
+            timer += Random.Range(minInterval, maxInterval);
         }
         timer -= Time.deltaTime;
     }

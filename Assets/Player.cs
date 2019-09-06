@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, ITakeDamage, IHaveStats
 {
     [SerializeField] private int baseHealth = 100;
 
@@ -15,6 +15,33 @@ public class Player : MonoBehaviour
         get
         {
             return health;
+        }
+    }
+    private float _attack, _defense;
+
+    public float Attack
+    {
+        get
+        {
+            return _attack;
+        }
+
+        private set
+        {
+            _attack = value;
+        }
+    }
+
+    public float Defense
+    {
+        get
+        {
+            return _defense;
+        }
+
+        private set
+        {
+            _defense = value;
         }
     }
 

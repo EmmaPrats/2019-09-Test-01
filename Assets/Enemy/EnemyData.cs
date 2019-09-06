@@ -7,6 +7,8 @@ public class EnemyData : ScriptableObject
 {
     public string name;
 
+    public int health;
+
     //Movement attributes
     public float movementSpeed = 10f;
     public float turnSpeed = 180f; //degrees/s

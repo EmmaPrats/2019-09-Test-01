@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SnakeData
   m_EditorClassIdentifier: 
   name: 
+  health: 20
   movementSpeed: 10
   turnSpeed: 180
   detectionRange: 10
