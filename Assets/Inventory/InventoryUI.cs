@@ -17,9 +17,8 @@ public class InventoryUI : MonoBehaviour
     void Start()
     {
         if (showPlayerInventory)
-            Display(Inventory.playerInventory);
-        else if (inventory)
-            Display(inventory);
+            inventory = Inventory.playerInventory;
+        Display(inventory);
     }
 
     public virtual void Display (Inventory i)
@@ -50,10 +49,6 @@ public class InventoryUI : MonoBehaviour
     public virtual void UIClicked(ItemUI iui)
     {
         itemSelected.Invoke(iui.item);
-
-        //Inventory.playerInventory.Add(iui.item);
-        //inventory.Remove(iui.item);
-        //Destroy(iui.gameObject);
     }
 
     // V   Code referenced by UnityEvents only   V

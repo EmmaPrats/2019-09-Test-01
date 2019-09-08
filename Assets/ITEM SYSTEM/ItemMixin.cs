@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class ItemMixin : MonoBehaviour
 {
-    public abstract void Tick(Player user);
+    public abstract void Tick(Character user);
 }

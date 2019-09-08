@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StatBoostMixin : ItemMixin
 {
-    public string stat;
+    public Stats stat; //TODO serialize
     public float amount;
     public bool isPercentage;
 
@@ -17,12 +17,12 @@ public class StatBoostMixin : ItemMixin
         item = GetComponent<Item>();
     }
 
-    public override void Tick(Player user)
+    public override void Tick(Character user)
     {
         if (!isActive)
         {
             Debug.Log("Boosting stat " + stat + " by " + amount + (isPercentage ? " multiplicatively." : "."));
-            user.AddStatModifier(stat, isPercentage ? "*" : "+", amount, item.useDuration);
+            user.AddStatModifier(stat, isPercentage ? ModifierTypes.mult : ModifierTypes.sum, amount, item.useDuration);
             isActive = true;
         }
     }

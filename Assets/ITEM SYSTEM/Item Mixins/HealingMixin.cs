@@ -19,7 +19,7 @@ public class HealingMixin : ItemMixin
         }
     }
 
-    public override void Tick(Player user)
+    public override void Tick(Character user)
     {
         if (item.useDuration > 0)
         {

@@ -39,7 +39,7 @@ public class Item : MonoBehaviour
     }
 
     //Returns true if still using, false if not
-    public bool Tick(Player user)
+    public bool Tick(Character user)
     {
         if (!isReady) //This is because Tick gets called before Start
             return true;

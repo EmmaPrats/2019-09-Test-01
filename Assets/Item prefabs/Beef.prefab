@@ -61,6 +61,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a688c8e7200684b8081485e3c4582688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stat: attack
+  stat: 1
   amount: 10
   isPercentage: 0

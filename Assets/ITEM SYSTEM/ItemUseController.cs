@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ItemUseController : MonoBehaviour
 {
-    public Player character;
+    public Character character;
     public Inventory inventory;
 
     [SerializeField] private List<Item> itemsInUse;
@@ -22,8 +22,9 @@ public class ItemUseController : MonoBehaviour
     {
         itemsInUse = new List<Item>();
 
-        character = Player.CurrentPlayer;
-        inventory = Inventory.playerInventory;
+        if (inventory == null)
+            inventory = Inventory.playerInventory;
+
         inventory.itemUsed.AddListener(UseItem);
     }
 
@@ -31,7 +32,6 @@ public class ItemUseController : MonoBehaviour
     private void UseItem(Item item)
     {
         //TODO check if I'm already using one of this type
-
         itemsInUse.Add(Instantiate(item, transform));
     }
 

@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 251c886267ca044dcb1ac88736349525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  consumable: 0
+  consumable: 1
   useDuration: 5
   channelDuration: 0
   rootsUserWhileUsing: 0
@@ -61,6 +61,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a688c8e7200684b8081485e3c4582688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stat: attack
+  stat: 1
   amount: 300
   isPercentage: 1
