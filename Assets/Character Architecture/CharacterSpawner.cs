@@ -25,11 +25,18 @@ public class CharacterSpawner : MonoBehaviour
     {
         if (spawnTimer <= 0)
         {
-            Instantiate(characterPrefab,
+            Enemy newCharacter = (Enemy) Instantiate(characterPrefab,
                         new Vector3(Random.Range(-20, 20), 0, Random.Range(-20, 20)), //TODO generalize this
-                        Quaternion.identity);
+                        Quaternion.identity, transform);
+            newCharacter.onEnemyDie.AddListener(RemoveCharacter);
+            characterList.Add(newCharacter);
             spawnTimer += Random.Range(minInterval, maxInterval);
         }
         spawnTimer -= Time.deltaTime;
+    }
+
+    private void RemoveCharacter(Enemy character)
+    {
+        characterList.Remove(character);
     }
 }

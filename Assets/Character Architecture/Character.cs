@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+[System.Serializable]
+public class CharacterEvent : UnityEvent<Character> { }
 
 public class Character : MonoBehaviour, IMove, IHaveStats
 {
@@ -205,6 +209,7 @@ public class Character : MonoBehaviour, IMove, IHaveStats
     {
         float damageTaken = Mathf.Min(Health, damage - Defense);
         Health -= damageTaken;
+        if (Health <= 0) onCharacterDies.Invoke(this); //TODO this should be somewhere else
         return damageTaken;
     }
 
@@ -232,4 +237,6 @@ public class Character : MonoBehaviour, IMove, IHaveStats
             return characterData.attackSpeed;
         }
     }
+
+    public CharacterEvent onCharacterDies;
 }
